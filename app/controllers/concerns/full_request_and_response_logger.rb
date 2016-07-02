@@ -5,10 +5,14 @@ module FullRequestAndResponseLogger
     append_around_action :log_request_and_response
     
     def log_request_and_response
+      logged_headers      = %w[accept authorization accept_language content_type user_agent x_app_uuid x_app_token]
+      logged_headers_size = logged_headers.max_by(&:size).size
+      
       Rails.logger.info { '  Headers:' }
-      %w[accept authorization accept_language user_agent].each do |header|
-        header_value = request.send(header)
-        Rails.logger.info { "    #{header.titleize.gsub(/\s/, '-')}=#{header_value.inspect}" } if header_value.present?
+      logged_headers.each do |header|
+        header       = header.titleize.gsub(/\s/, '-')
+        header_value = request.headers[header]
+        Rails.logger.info { "    #{header.rjust(logged_headers_size)} => #{header_value.inspect}" } if header_value.present?
       end
       
       begin
