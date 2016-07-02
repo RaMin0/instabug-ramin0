@@ -5,6 +5,8 @@ gem 'rails-api',    '0.4.0'
 
 gem 'mysql2'
 
+gem 'devise'
+gem 'simple_token_authentication'
 gem 'api-versions'
 gem 'responders'
 gem 'rabl'
