@@ -1,5 +1,7 @@
 class Api::ApiController < ApplicationController
   include FullRequestAndResponseLogger
+  
+  acts_as_token_authentication_handler_for App, fallback: :exception
 
   respond_to :json
   before_action :verify_request_format!
