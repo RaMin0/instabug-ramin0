@@ -1,0 +1,2 @@
+:verbose: true
+:pidfile: tmp/pids/sidekiq.pid

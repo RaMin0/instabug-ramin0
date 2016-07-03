@@ -1,0 +1,2 @@
+# Extensions
+require 'ext/hash'
