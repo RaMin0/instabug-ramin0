@@ -17,11 +17,11 @@ class Api::ApiController < ApplicationController
     when ActiveRecord::RecordNotFound, ActionController::RoutingError
       head :not_found
     else
-      render status: :bad_request, json: { error_messages_sentence: e.message }
+      render status: :bad_request, json: { error: e.message }
     end
   end
   
   def four_oh_four
-    render status: :not_found, json: { error_messages_sentence: 'Not found' }
+    render status: :not_found, json: {}
   end
 end
