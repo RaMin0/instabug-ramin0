@@ -2,9 +2,11 @@ class Bug < ActiveRecord::Base
   # Concerns
   include Counter::Cache
   
+  # Constants
+  STATUSES = %w[new in_progress closed].freeze
+  PRIORITIES = %w[minor major critical].freeze
+  
   # Plugins
-  enum status: %w[open in_progress closed]
-  enum priority: %w[minor major critical]
   counter_cache_on column: :bugs_count,
                    relation: :app,
                    relation_class_name: 'App',
@@ -16,6 +18,10 @@ class Bug < ActiveRecord::Base
                    method: :calculate_next_bug_number,
                    wait: 10.seconds,
                    if: :persisted?.to_proc
+  
+  # Validations
+  validates :status, inclusion: { in: STATUSES }
+  validates :priority, inclusion: { in: PRIORITIES }
   
   # Callbacks
   before_create -> { self.number = self.app.next_bug_number(cached: false) }

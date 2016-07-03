@@ -1,7 +1,7 @@
 FactoryGirl.define do
   factory :bug do
     app
-    status   { Bug.statuses.keys.sample }
-    priority { Bug.priorities.keys.sample }
+    status   { Bug::STATUSES.sample }
+    priority { Bug::PRIORITIES.sample }
   end
 end

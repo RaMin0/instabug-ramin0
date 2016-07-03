@@ -11,4 +11,7 @@ RSpec.describe Bug do
   it { should respond_to(:priority) }
   
   it { should be_valid }
+  
+  it { should validate_inclusion_of(:status).in_array(Bug::STATUSES) }
+  it { should validate_inclusion_of(:priority).in_array(Bug::PRIORITIES) }
 end
