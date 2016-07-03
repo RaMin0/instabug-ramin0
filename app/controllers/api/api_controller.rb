@@ -22,6 +22,6 @@ class Api::ApiController < ApplicationController
   end
   
   def four_oh_four
-    render status: :not_found, json: {}
+    raise ActionController::RoutingError.new(:not_found)
   end
 end
