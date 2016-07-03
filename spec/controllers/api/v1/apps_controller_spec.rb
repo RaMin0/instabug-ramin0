@@ -41,9 +41,9 @@ describe Api::V1::AppsController do
         expect(assigns[:app]).to be_a_new(App)
       end
       
-      it 'renders an errors json with the invalid attributes' do
-        expect(json_response).to have_key(:errors)
-        expect(json_response[:errors]).to have_key(:name)
+      it 'renders an error json with a message about the invalid attributes' do
+        expect(json_response).to have_key(:error)
+        expect(json_response[:error]).to match(/name/i)
       end
 
       it { should respond_with 422 }
