@@ -14,6 +14,6 @@ class Api::V1::BugsController < Api::V1::ApiController
 protected
   
   def bug_params
-    params.fetch(:bug, {}).permit(:priority)
+    params.fetch(:bug, {}).permit(:priority, state_attributes: [:device, :os, :memory, :storage])
   end
 end

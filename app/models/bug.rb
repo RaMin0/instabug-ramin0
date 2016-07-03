@@ -28,4 +28,6 @@ class Bug < ActiveRecord::Base
   
   # Relations
   belongs_to :app
+  has_one :state, dependent: :destroy
+  accepts_nested_attributes_for :state, reject_if: :all_blank
 end
