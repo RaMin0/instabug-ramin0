@@ -1,0 +1,3 @@
+object @bug
+
+attributes :number
