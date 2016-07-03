@@ -8,6 +8,6 @@ class Api::V1::AppsController < Api::V1::ApiController
 protected
   
   def app_params
-    params.fetch(:app, {}).slice(:name).permit!
+    params.fetch(:app, {}).permit(:name)
   end
 end
