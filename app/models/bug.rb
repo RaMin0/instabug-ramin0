@@ -36,6 +36,7 @@ class Bug < ActiveRecord::Base
   def save_later
     self.number = self.app.next_bug_number(cached: false)
     
+    # push the updated bugs_count and next_bug_number to the cache
     ActiveRecordUpdater.new(COUNTER_CACHE_BUGS_COUNT_OPTIONS).after_create(self)
     ActiveRecordUpdater.new(COUNTER_CACHE_NEXT_BUG_NUMBER_OPTIONS).after_create(self)
     
