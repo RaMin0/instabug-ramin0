@@ -251,21 +251,6 @@ Devise.setup do |config|
   #   manager.intercept_401 = false
   #   manager.default_strategies(scope: :user).unshift :some_external_strategy
   # end
-  config.warden do |manager|
-    manager.failure_app = Class.new(Devise::FailureApp) do
-      def http_auth_body
-        return i18n_message unless request_format
-        method = "to_#{request_format}"
-        if method == "to_xml"
-          { error_messages_sentence: i18n_message }.to_xml(root: 'error_messages_sentence')
-        elsif {}.respond_to?(method)
-          { error_messages_sentence: i18n_message }.send(method)
-        else
-          i18n_message
-        end
-      end 
-    end
-  end
 
   # ==> Mountable engine configurations
   # When using Devise inside an engine, let's call it `MyEngine`, and this engine
