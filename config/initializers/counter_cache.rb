@@ -17,6 +17,6 @@ end
 
 Counter::Cache.configure do |config|
   config.default_worker_adapter = CounterCacheWorker
-  config.recalculation_delay    = 15.seconds # 6.hours
+  config.recalculation_delay    = 6.hours
   config.redis_pool             = Redis::Namespace.new(:"instabug-ramin0-#{Rails.env}", redis: Redis.new)
 end
