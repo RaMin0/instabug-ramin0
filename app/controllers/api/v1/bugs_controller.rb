@@ -4,7 +4,9 @@ class Api::V1::BugsController < Api::V1::ApiController
   end
   
   def create
-    respond_with @bug = current_app.bugs.create(bug_params)
+    @bug = current_app.bugs.build(bug_params)
+    @bug.save_later if @bug.valid?
+    respond_with @bug
   end
   
   def count
