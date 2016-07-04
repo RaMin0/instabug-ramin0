@@ -1,5 +1,7 @@
 class Api::ApiController < ApplicationController
   include FullRequestAndResponseLogger
+  
+  acts_as_token_authentication_handler_for App, fallback: :exception
 
   respond_to :json
   before_action :verify_request_format!
@@ -15,11 +17,11 @@ class Api::ApiController < ApplicationController
     when ActiveRecord::RecordNotFound, ActionController::RoutingError
       head :not_found
     else
-      render status: :bad_request, json: { error_messages_sentence: e.message }
+      render status: :bad_request, json: { error: e.message }
     end
   end
   
   def four_oh_four
-    render status: :not_found, json: { error_messages_sentence: 'Not found' }
+    raise ActionController::RoutingError.new(:not_found)
   end
 end

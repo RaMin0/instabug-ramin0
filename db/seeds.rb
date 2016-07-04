@@ -5,3 +5,9 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+puts 'Creating App...'
+app = App.create!(name: 'Instabug')
+puts '- Name : ' << app.name
+puts '- Uuid : ' << app.uuid
+puts '- Token: ' << app.authentication_token

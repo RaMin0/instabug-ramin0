@@ -54,6 +54,16 @@ RSpec.configure do |config|
   config.filter_rails_from_backtrace!
   # arbitrary gems may also be filtered via:
   # config.filter_gems_from_backtrace("gem name")
+  
+  # Including to test requests
+  config.include Request::JsonHelpers, type: :controller
+  config.include Request::HeadersHelpers, type: :controller
+
+  config.before :each, type: :controller do
+    include_default_accept_headers
+  end
+  
+  config.render_views
 end
 
 Shoulda::Matchers.configure do |config|

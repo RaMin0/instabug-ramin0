@@ -13,8 +13,11 @@
 /tmp
 /routes.txt
 
-# Ignore db schema
+# Ignore db schema.
 /db/schema.rb
 
 # Ignore private files.
 /config/database.yml
+
+# Ignore spec examples file.
+/spec/examples.txt
